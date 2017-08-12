@@ -1,0 +1,269 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ */
+#}
+<article{{ attributes }}>
+
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer>
+      {{ author_picture }}
+      <div{{ author_attributes }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes }}>
+
+
+    <div id="wrapper">
+        <div class="overlay" id="overlayer" data-toggle="offcanvas"></div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li>
+                </li>
+                <li class="full-white">
+                    <a href="/buyer/register">SIGN UP To BUY</a>
+                </li>
+                <li class="white-border">
+                    <a href="/distributor/register">BECOME A DISTRIBUTOR</a>
+                </li>
+                <li>
+                    <a href="/user">Buy</a>
+                </li>
+                <li>
+                    <a href="/distributor/register">Distribute</a>
+                </li>
+                <li>
+                    <a href="#">Help</a>
+                </li>
+                <li>
+                    <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#">Terms and Conditions</a>
+                </li>
+                <li>
+                    <a href=""><img src="/themes/icecapusa_theme/asset/img/appstore-white.png"></a>
+                </li>
+                <li>
+                    <a href=""><img src="/themes/icecapusa_theme/asset/img/playstore-white.png"></a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="page-content-wrapper">
+            <header>
+                <nav class="navbar navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                                <span class="hamb-top"></span>
+                                <span class="hamb-middle"></span>
+                                <span class="hamb-bottom"></span>
+                            </button>
+
+                            <a class="navbar-brand" href=""><span class="login-logo" style="background-color:transparent;font-size: 30px;font-weight: bold;padding: 13px 0 0 0;">{{ site_name }}</span></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="/buyer/login">Buy</a>
+                                </li>
+                                <li >
+                                    <a href="/distributor/login">Distribute</a>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Help</a></li>
+                                <li><a href="/buyer/login">Signin</a></li>
+                                <li><a class="menu-btn" href="/distributor/register">Become a Distributor</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="banner row no-margin" style="height:899px;background-image: url('/themes/icecapusa_theme/asset/img/banner-bg.jpg');">
+    <div class="banner-overlay"></div>
+    <div class="container">
+        <div class="col-md-8">
+            <h2 class="banner-head">{{ label }}<br>{{ content.body }}</h2>
+        </div>
+        <div class="col-md-4">
+            <div class="banner-form">
+                <div class="row no-margin fields">
+                    <div class="left">
+                        <img src="/themes/icecapusa_theme/asset/img/ride-form-icon.png">
+                    </div>
+                    <div class="right">
+                        <a href="/buyer/register">
+                            <h3>Sign up to Buy</h3>
+                            <h5>SIGN UP <i class="fa fa-chevron-right"></i></h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="row no-margin fields">
+                    <div class="left">
+                        <img src="/themes/icecapusa_theme/asset/img/ride-form-icon.png">
+                    </div>
+                    <div class="right">
+                        <a href="/distributor/register">
+                            <h3>Sign up to Distribute</h3>
+                            <h5>SIGN UP <i class="fa fa-chevron-right"></i></h5>
+                        </a>
+                    </div>
+                </div>
+                <p class="note-or">Or <a href="/buyer/login">sign in</a> with your buyer account.</p>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="page-content">
+                <div class="footer row no-margin">
+                    <div class="container">
+                        <div class="footer-logo row no-margin">
+                            <div class="logo-img">
+                                <span class="login-logo" style="background-color:transparent;font-size: 30px;font-weight: bold;color: white;padding: 20px 0 0 0;">{{ site_name }}</span>
+                            </div>
+                        </div>
+                        <div class="row no-margin">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <ul>
+                                    <li><a href="/register">Buy</a></li>
+                                    <li><a href="buyer/register">Distribute</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <ul>
+                                    <li><a href="/buyer/register">Signup to Buy</a></li>
+                                    <li><a href="/distributor/register">Become a Distributor</a></li>
+                                    <li><a href="/buyer/dashboard">Buy Now</a></li>                            
+                                </ul>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <h5>Get App on</h5>
+                                <ul class="app">
+                                    <li>
+                                        <a href="">
+                                            <img src="/themes/icecapusa_theme/asset/img/appstore.png">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <img src="/themes/icecapusa_theme/asset/img/playstore.png">
+                                        </a>
+                                    </li>                                                        
+                                </ul>                        
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-12">                        
+                                <h5>Connect to Us</h5>
+                                <ul class="social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row no-margin">
+                            <div class="col-md-12 copy">
+                                <p>© 2017 IceCap USA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </div>
+
+</article>

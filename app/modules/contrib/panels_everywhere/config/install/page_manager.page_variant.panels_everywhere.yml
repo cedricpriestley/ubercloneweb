@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+  module:
+    - panels_everywhere
+    - system
+id: panels_everywhere
+label: 'Panels Everywhere'
+variant: panels_everywhere_variant
+variant_settings:
+  id: panels_everywhere_variant
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: ''
+  storage_type: ''
+  storage_id: ''
+  builder: standard
+page: site_template
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

@@ -1,0 +1,5 @@
+global-styling:
+  version: VERSION
+  css:
+    base:
+      asset/css/style.css: {}

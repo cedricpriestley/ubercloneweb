@@ -1,0 +1,39 @@
+<?php
+
+function icecapusa_user_login($account) {
+  
+  $current_path = \Drupal::service('path.current')->getPath();
+  $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  
+  if ($result == "/buyer/login" || $result == "/buyer/register") {
+  	$url = "/user";
+  	$response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+  	$response->send();
+  }
+
+  if ($result == "/distributor/login" || $result == "/distributor/register") {
+  	$url = "/user";
+  	$response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+  	$response->send();
+  }
+
+  if ($result == "/admin/login") {
+  	$url = "/user`";
+  	$response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+  	$response->send();
+  }
+}
+
+function icecapusa_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  
+  if ($result == "/buyer/login" || $result == "/buyer/register") {
+    //print "<pre>";print_r($entity->roles);print "</pre>";exit;
+    $entity->addRole('buyer');
+  }
+
+  if ($result == "/distribute/login" || $result == "/distribute/register") {
+    $entity->addRole('distributor');
+  }
+}

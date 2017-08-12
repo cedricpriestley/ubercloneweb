@@ -1,0 +1,26 @@
+name: IceCapUSA
+type: theme
+description: 'A custom IceCap USA theme'
+# core: 8.x
+
+#libraries:
+#  - icecapusa_theme/global-styling
+
+#regions:
+#  header: 'Header'
+#  pre_content: 'Pre-content'
+#  breadcrumb: Breadcrumb
+#  highlighted: Highlighted
+#  help: Help
+#  content: Content
+#  page_top: 'Page top'
+#  page_bottom: 'Page bottom'
+#  sidebar_first: 'First sidebar'
+#regions_hidden:
+#  - sidebar_first
+
+# Information added by Drupal.org packaging script on 2016-11-30
+version: '8.x-1.3'
+core: '8.x'
+project: 'icecapusa_theme'
+#datestamp: 1480507087

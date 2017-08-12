@@ -1,0 +1,4 @@
+Panels_Everywhere 8.x-1.0-alpha1, 2017-01-20
+--------------------------------------------
+By dsnopek: Initial port to Drupal 8.
+By evanjenkis: General improvements & bugfixing.

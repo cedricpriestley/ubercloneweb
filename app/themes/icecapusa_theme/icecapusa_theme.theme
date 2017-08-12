@@ -1,0 +1,371 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the IceCapUSA theme.
+ */
+
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Form\FormStateInterface;
+
+  /**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function icecapusa_theme_preprocess_html(&$variables) {
+}
+
+  /**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ */
+function icecapusa_theme_preprocess_node(&$variables) {
+  return;
+  $current_path = \Drupal::service('path.current')->getPath();
+  $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+  if (!\Drupal::currentUser()->isAnonymous()) {
+    if ($result == "/buyer" || $result == "/buyer/login" || $result == "/buyer/register") {
+      $url = "/buyer/dashboard";
+      $response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+      //$response->send();
+    }
+    if ($result == "/distributor" || $result == "/distributor/login" || $result == "/distributor/register") {
+      $url = "/distributor/dashboard";
+      $response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+      //$response->send();      
+    }           
+  }
+
+  if ($result == "/buyer/login" || $result == "/distributor/login") {
+    $form = Drupal::formBuilder()->getForm(Drupal\user\Form\UserLoginForm::class); 
+    $render = Drupal::service('renderer');
+    $variables['login_form'] = $render->renderPlain($form);
+  }
+  
+  if ($result == "/buyer/register" || $result == "/distributor/register") {
+    $entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
+    $formObject = \Drupal::entityTypeManager()
+    ->getFormObject('user', 'register')
+    ->setEntity($entity);
+    $form = \Drupal::formBuilder()->getForm($formObject);
+    $render = Drupal::service('renderer');
+    $variables['register_form'] = $render->renderPlain($form);
+  }
+
+  if ($result == "/buyer/password/reset" || $result == "/distributor/password/reset" || $result == "/admin/password/reset") {
+      $form = Drupal::formBuilder()->getForm(Drupal\user\Form\UserPasswordResetForm::class) ; 
+      $render = Drupal::service('renderer');
+      $variables['password_form'] = $render->renderPlain($form);
+  }
+
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+
+  if ($result == "/buyer/dashboard") {
+    $variables['product_list'] = views_embed_view('my_products', 'list');
+    
+    $uid = \Drupal::currentUser()->id();
+
+    // Might be zero if user is logged out.
+    if ($uid) {
+      $user = \Drupal\user\Entity\User::load($uid);
+      //\Drupal\user\Entity\User::load($uid)->user_picture->first()->view('large');
+       // check that the field exists and that it has a value.
+      if (!empty($user->user_picture) && $user->user_picture->isEmpty() === FALSE) {
+        
+        $image = $user->user_picture->first();
+        //var_dump($image);
+        //$user_avatar = \Drupal::service('renderer')->renderPlain($image);
+        $variables['user_avatar'] = $image;
+      }
+    }
+
+  }
+}
+
+function icecapusa_theme_preprocess_form_element(&$variables) {
+	//print "<pre>";print_r($variables);print "<pre>";	
+}
+
+function icecapusa_theme_theme_suggestions_html_alter(array &$suggestions, array $variables) {
+
+  $module_handler = \Drupal::moduleHandler();
+
+  if ($module_handler->moduleExists('path') && isset($variables['html']) && $variables['html']['#type'] == 'html') {  
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+    $path_alias = trim($result, '/');
+    $path_alias = str_replace('-', '_', $path_alias);
+    $parts = explode('/', $path_alias);
+    $suggestions = array();
+    $suggestion = "";
+    $i=0;
+      
+    foreach ($parts as $key=>$part) {
+      
+      if ($suggestion == '') {
+        $suggestion .= "html__$part";
+      } else {
+        if ($i==sizeof($parts)-1) {
+          $suggestion .= "_$part";
+        } else {
+         // echo $i . " - " . sizeof($parts);
+          $suggestion .= "__$part";
+        }
+      }
+
+      $suggestions[] = $suggestion;
+      //print "<pre>";print_r($suggestions);print "</pre>";
+      $i++;
+    }
+  }
+}
+
+function icecapusa_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  return;
+  $module_handler = \Drupal::moduleHandler();
+
+  if ($module_handler->moduleExists('path') && isset($variables['page']) && $variables['page']['#type'] == 'page') {  
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+    $path_alias = trim($result, '/');
+    $path_alias = str_replace('-', '_', $path_alias);
+    $parts = explode('/', $path_alias);
+    $suggestions = array();
+    $suggestion = "";
+    $i=0;
+      
+    foreach ($parts as $key=>$part) {
+      
+      if ($suggestion == '') {
+        $suggestion .= "page__$part";
+      } else {
+        if ($i==sizeof($parts)-1) {
+          $suggestion .= "_$part";
+        } else {
+         // echo $i . " - " . sizeof($parts);
+          $suggestion .= "__$part";
+        }
+      }
+
+      $suggestions[] = $suggestion;
+      //print "<pre>";print_r($suggestions);print "</pre>";
+      $i++;
+    }
+  }
+}
+
+function icecapusa_theme_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  return;
+  $module_handler = \Drupal::moduleHandler();
+
+  if ($module_handler->moduleExists('path')) {  
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+    $path_alias = trim($result, '/');
+    $path_alias = str_replace('-', '_', $path_alias);
+    $parts = explode('/', $path_alias);
+    $suggestions = array();
+    $suggestion = "";
+    $i=0;
+      
+    foreach ($parts as $key=>$part) {
+      
+      if ($suggestion == '') {
+        $suggestion .= "node__$part";
+      } else {
+        if ($i==sizeof($parts)-1) {
+          $suggestion .= "_$part";
+        } else {
+         // echo $i . " - " . sizeof($parts);
+          $suggestion .= "__$part";
+        }
+      }
+
+      $suggestions[] = $suggestion;
+      //print "<pre>";print_r($suggestions);print "</pre>";
+      $i++;
+    }
+  }
+}
+
+function icecapusa_theme_theme_suggestions_region_alter(array &$suggestions, array $variables) {
+  return;
+  $module_handler = \Drupal::moduleHandler();
+
+  if ($module_handler->moduleExists('path')) {  
+    $current_path = \Drupal::service('path.current')->getPath();
+    $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+    $path_alias = trim($result, '/');
+    $path_alias = str_replace('-', '_', $path_alias);
+    $parts = explode('/', $path_alias);
+    $suggestions = array();
+    $suggestion = "";
+    $i=0;
+      
+    foreach ($parts as $key=>$part) {
+      
+      if ($suggestion == '') {
+        $suggestion .= "region__$part";
+      } else {
+        if ($i==sizeof($parts)-1) {
+          $suggestion .= "_$part";
+        } else {
+         // echo $i . " - " . sizeof($parts);
+          $suggestion .= "__$part";
+        }
+      }
+
+      $suggestions[] = $suggestion;
+
+      //print "<pre>";print_r($suggestions);print "</pre>";
+      
+      $i++;
+    }
+  }
+
+}
+
+function icecapusa_theme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  return;
+  $elements = $variables['elements'];
+  if (!isset($elements['content']['#type'])) return;
+
+  $module_handler = \Drupal::moduleHandler();
+
+  //if ($elements['#configuration']['id'] == "page_title_block") {
+    //dpm($elements['content']);
+    if ($module_handler->moduleExists('path')) {  
+      $current_path = \Drupal::service('path.current')->getPath();
+      $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+      $path_alias = trim($result, '/');
+      $path_alias = str_replace('-', '_', $path_alias);
+      $parts = explode('/', $path_alias);
+      $suggestions = array();
+      $suggestion = "";
+      $i=0;
+        
+      foreach ($parts as $key=>$part) {
+        
+        if ($suggestion == '') {
+          $suggestion .= "block__$part";
+        } else {
+          if ($i==sizeof($parts)-1) {
+            $suggestion .= "__$part";
+          } else {
+           // echo $i . " - " . sizeof($parts);
+            $suggestion .= "__$part";
+          }
+        }
+
+        $suggestions[] = $suggestion . "_" . $elements['content']['#type'];
+        //dpm($suggestion . "_" . $elements['content']['#type']);
+        
+        $i++;
+      }
+    }
+
+    //dpm($suggestions);
+  //}
+}
+
+function icecapusa_theme_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+ return;
+  $module_handler = \Drupal::moduleHandler();
+
+  //if ($elements['#configuration']['id'] == "page_title_block") {
+    //dpm($variables);
+    if ($module_handler->moduleExists('path')) {  
+      $current_path = \Drupal::service('path.current')->getPath();
+      $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+      $path_alias = trim($result, '/');
+      $path_alias = str_replace('-', '_', $path_alias);
+      $parts = explode('/', $path_alias);
+      $suggestions = array();
+      $suggestion = "";
+      $i=0;
+        
+      foreach ($parts as $key=>$part) {
+        
+        if ($suggestion == '') {
+          $suggestion .= "field__$part";
+        } else {
+          if ($i==sizeof($parts)-1) {
+            $suggestion .= "__$part";
+          } else {
+           // echo $i . " - " . sizeof($parts);
+            $suggestion .= "__$part";
+          }
+        }
+
+        $suggestions[] = $suggestion . "_" . strtolower($variables['element']['#title']);
+        //dpm($suggestion . "_" . strtolower($variables['element']['#title']));
+        
+        $i++;
+      }
+    }
+
+    //dpm($suggestions);
+  //}
+}
+
+function icecap_usa_registration_form_validate($form, &$form_state) {
+}
+
+function icecapusa_theme_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  return;
+  if ($form_id == "user_login_form") {
+    $form['actions']['submit']['#value'] = "LOGIN";
+    $form['name']['#title'] = "";
+    $form['pass']['#title'] = "";
+    $form['name']['#description'] = "";
+    $form['pass']['#description'] = "";
+    $form['name']['#attributes']['placeholder'] = "Username";
+    $form['pass']['#attributes']['placeholder'] = "Password";
+  }
+
+  if ($form_id == "user_register_form") {
+    $form['#validate'][] = "icecap_usa_registration_form_validate";
+    /*
+		$entity = \Drupal::entityTypeManager()->getStorage('user')->create(array());
+		$formObject = \Drupal::entityTypeManager()->getFormObject('user', 'register')->setEntity($entity);
+		$form = \Drupal::formBuilder()->getForm($formObject);
+    */
+
+		$form['account']['mail']['#attributes']['style'] = "display:none;";
+    unset($form['account']['mail']['#title']);
+    $form['account']['mail']['#description'] = "";
+    $form['account']['mail']['#required'] = FALSE;
+    //unset($form['account']['mail']);
+    $form['account']['name']['#title'] = "";
+    $form['account']['name']['#description'] = "";
+    $form['account']['name']['#attributes']['placeholder'] = "Email Address";
+
+    unset($form['account']['status']);
+    unset($form['account']['roles']);
+    unset($form['account']['notify']);
+    unset($form['account']['pass']['#description']);
+    //$form['account']['pass']['pass1']['#title'] = "";
+    //$form['account']['pass']['pass1']['#attributes']['placeholder'] = "Password";
+    //$form['account']['pass']['pass2']['#title'] = "";
+    //$form['account']['pass']['pass2']['#attributes']['placeholder'] = "Confirm password";
+
+		$form['field_first_name']['widget'][0]['#title'] = "";
+    $form['field_first_name']['widget'][0]['value']['#title'] = "";
+		$form['field_first_name']['widget'][0]['#attributes']['placeholder'] = "First name";
+    $form['field_first_name']['widget'][0]['value']['#attributes']['placeholder'] = "First name";
+    $form['field_first_name']['#attributes']['placeholder'] = "First name";
+		$form['field_last_name']['widget']['#title'] = "";
+    $form['field_last_name']['widget'][0]['value']['#title'] = "";
+    $form['field_last_name']['widget'][0]['#attributes']['placeholder'] = "Last name";
+    $form['field_last_name']['widget'][0]['value']['#attributes']['placeholder'] = "Last name";
+    $form['field_last_name']['#attributes']['placeholder'] = "Last name";
+  //dpm($form);
+    $form['actions']['submit']['#value'] = "CREATE NEW ACCOUNT";
+    $form['actions']['submit']['#attributes']['onclick'] = 'javascript:inputboxes = $("form input[type=text]"); uname = inputboxes[2].value;console.log(uname);$("form input[type=email]").val(uname);';
+  }
+}

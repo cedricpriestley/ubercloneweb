@@ -1,0 +1,14 @@
+name: Panels Everywhere (PoC)
+type: module
+description: 'A proof-of-concept implementation of Panels Everywhere.'
+# core: 8.x
+package: Other
+dependencies:
+  - page_manager
+  - panels
+
+# Information added by Drupal.org packaging script on 2017-01-20
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'panels_everywhere'
+datestamp: 1484938985

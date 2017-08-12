@@ -1,0 +1,9 @@
+name: IceCap USA custom hooks
+type: module
+description: 'Provides custom hooks for IceCap USA.'
+package: IceCap USA
+
+version: '8.x-1.0'
+core: '8.x'
+project: 'icecapusa'
+datestamp: 1501231975
