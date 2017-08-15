@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tranxit - Payment - User Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="http://18.220.43.48/favicon.ico"/>
+
+    <link href="http://18.220.43.48/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/slick.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://18.220.43.48/asset/css/slick-theme.css"/>
+    <link href="http://18.220.43.48/asset/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/bootstrap-timepicker.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/dashboard-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="col-md-12">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>             
+
+              <a class="navbar-brand" href="http://18.220.43.48/dashboard"><img src="http://18.220.43.48/logo-black.png"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+                <ul class="nav navbar-nav navbar-right">                  
+                  <li class="menu-drop">
+                      <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Appoets Demo
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                            <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                            <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                            <li><a href="http://18.220.43.48/logout"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a></li>
+                                    <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                                    </form>
+                          </ul>
+                        </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </nav>
+</header>
+    <div class="page-content dashboard-page">    
+        <div class="container">
+            
+            <div class="col-md-3">
+    <div class="dash-left">
+        <div class="user-img">
+                        <div class="pro-img" style="background-image: url(http://18.220.43.48/main/avatar.jpg);"></div>
+            <h4>Appoets Demo</h4>
+        </div>
+        <div class="side-menu">
+             <ul>
+                <li><a href="http://18.220.43.48/dashboard">Dashboard</a></li>
+                <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                <li><a href="http://18.220.43.48/upcoming/trips">Upcoming trips</a></li>
+                <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                <li><a href="http://18.220.43.48/payment">Payment</a></li>
+                <li><a href="http://18.220.43.48/promotion">Promotions</a></li>
+                <li><a href="http://18.220.43.48/wallet">My Wallet <span class="pull-right">$0.00</span></a></li>
+                <li><a href="http://18.220.43.48/logout"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a></li>
+                        <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                            <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                        </form>
+            </ul>
+        </div>
+    </div>
+</div>            
+<div class="col-md-9">
+    <div class="dash-content">
+        <div class="row no-margin">
+            <div class="col-md-12">
+                <h4 class="page-title">Payment</h4>
+            </div>
+        </div>
+                <div class="row no-margin payment">
+            <div class="col-md-12">
+                <h5 class="btm-border"><strong>Payment Methods</strong> 
+                                <a href="#" class="sub-right pull-right" data-toggle="modal" data-target="#add-card-modal">Add Card</a>
+                                </h5>
+
+                <div class="pay-option">
+                    <h6><img src="http://18.220.43.48/asset/img/cash-icon.png"> CASH </h6>
+                </div>
+                                                <div class="pay-option">
+                    <h6>
+                        <img src="http://18.220.43.48/asset/img/card-icon.png"> American Express **** **** **** 0005 
+                         
+                        <form action="http://18.220.43.48/card/destory" method="POST" class="pull-right">
+                            <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="card_id" value="card_1Ar7lJLN6lzulolDRKkIVcyn">
+                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-sm" >Delete</button>
+                        </form>
+                    </h6>
+                </div>
+                                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+    <!-- Add Card Modal -->
+    <div id="add-card-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" >
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Card</h4>
+          </div>
+            <form id="payment-form" action="http://18.220.43.48/card" method="POST" >
+                <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+          <div class="modal-body">
+            <div class="row no-margin" id="card-payment">
+                <div class="form-group col-md-12 col-sm-12">
+                    <label>Full Name</label>
+                    <input data-stripe="name" autocomplete="off" required type="text" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group col-md-12 col-sm-12">
+                    <label>Card Number</label>
+                    <input data-stripe="number" type="text" onkeypress="return isNumberKey(event);" required autocomplete="off" maxlength="16" class="form-control" placeholder="Card Number">
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label>Month</label>
+                    <input type="text" onkeypress="return isNumberKey(event);" maxlength="2" required autocomplete="off" class="form-control" data-stripe="exp-month" placeholder="MM">
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label>Year</label>
+                    <input type="text" onkeypress="return isNumberKey(event);" maxlength="2" required autocomplete="off" data-stripe="exp-year" class="form-control" placeholder="YY">
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label>CVV</label>
+                    <input type="text" data-stripe="cvc" onkeypress="return isNumberKey(event);" required autocomplete="off" maxlength="4" class="form-control" placeholder="CVV">
+                </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Add Card</button>
+          </div>
+        </form>
+
+        </div>
+
+      </div>
+    </div>
+
+    
+
+        </div>
+    </div>
+
+
+    <div class="row footer no-margin">
+        <div class="container">
+            <div class="col-md-6 text-left">
+                <p>&copy; 2017 Appoets</p>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/appstore.png"></a>
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/playstore.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://18.220.43.48/asset/js/jquery.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap.min.js"></script>       
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery-migrate-1.2.1.min.js"></script> 
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/slick.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-datepicker.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-timepicker.js"></script>
+    <script src="http://18.220.43.48/asset/js/dashboard-scripts.js"></script>
+
+        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+        Stripe.setPublishableKey("pk_test_JurHzK4gJkIzpWlxPQbIQFMF");
+
+         var stripeResponseHandler = function (status, response) {
+            var $form = $('#payment-form');
+
+            console.log(response);
+
+            if (response.error) {
+                // Show the errors on the form
+                $form.find('.payment-errors').text(response.error.message);
+                $form.find('button').prop('disabled', false);
+                alert('error');
+
+            } else {
+                // token contains id, last4, and card type
+                var token = response.id;
+                // Insert the token into the form so it gets submitted to the server
+                $form.append($('<input type="hidden" id="stripeToken" name="stripe_token" />').val(token));
+                jQuery($form.get(0)).submit();
+            }
+        };
+                
+        $('#payment-form').submit(function (e) {
+            
+            if ($('#stripeToken').length == 0)
+            {
+                console.log('ok');
+                var $form = $(this);
+                $form.find('button').prop('disabled', true);
+                console.log($form);
+                Stripe.card.createToken($form, stripeResponseHandler);
+                return false;
+            }
+        });
+
+    </script>
+    <script type="text/javascript">
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+    </script>
+    
+</body>
+</html>

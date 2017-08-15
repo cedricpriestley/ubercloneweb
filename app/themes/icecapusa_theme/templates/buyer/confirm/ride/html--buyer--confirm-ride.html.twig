@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tranxit - Ride Confirmation  - User Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="http://18.220.43.48/favicon.ico"/>
+
+    <link href="http://18.220.43.48/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/slick.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://18.220.43.48/asset/css/slick-theme.css"/>
+    <link href="http://18.220.43.48/asset/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/bootstrap-timepicker.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/dashboard-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="col-md-12">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>             
+
+              <a class="navbar-brand" href="http://18.220.43.48/dashboard"><img src="http://18.220.43.48/logo-black.png"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+                <ul class="nav navbar-nav navbar-right">                  
+                  <li class="menu-drop">
+                      <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Appoets Demo
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                            <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                            <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                            <li><a href="http://18.220.43.48/logout"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a></li>
+                                    <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                                    </form>
+                          </ul>
+                        </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </nav>
+</header>
+    <div class="page-content dashboard-page">    
+        <div class="container">
+            
+            <div class="col-md-3">
+    <div class="dash-left">
+        <div class="user-img">
+                        <div class="pro-img" style="background-image: url(http://18.220.43.48/main/avatar.jpg);"></div>
+            <h4>Appoets Demo</h4>
+        </div>
+        <div class="side-menu">
+             <ul>
+                <li><a href="http://18.220.43.48/dashboard">Dashboard</a></li>
+                <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                <li><a href="http://18.220.43.48/upcoming/trips">Upcoming trips</a></li>
+                <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                <li><a href="http://18.220.43.48/payment">Payment</a></li>
+                <li><a href="http://18.220.43.48/promotion">Promotions</a></li>
+                <li><a href="http://18.220.43.48/wallet">My Wallet <span class="pull-right">$0.00</span></a></li>
+                <li><a href="http://18.220.43.48/logout"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a></li>
+                        <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                            <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                        </form>
+            </ul>
+        </div>
+    </div>
+</div>            <div class="col-md-9">
+    <div class="dash-content">
+        <div class="row no-margin">
+            <div class="col-md-12">
+                <h4 class="page-title">Ride Now</h4>
+            </div>
+        </div>
+                <div class="row no-margin">
+            <div class="col-md-6">
+                <form action="http://18.220.43.48/create/ride" method="POST" id="create_ride">
+                <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                    <dl class="dl-horizontal left-right">
+                        <dt>Type</dt>
+                        <dd>Sedan</dd>
+                        <dt>Total Distance</dt>
+                        <dd>2 Kms</dd>
+                        <dt>ETA</dt>
+                        <dd>8 mins</dd>
+                        <dt>Estimated Fare</dt>
+                        <dd>$20.2</dd>
+                        <hr>
+                                            </dl>
+
+                    <input type="hidden" name="s_address" value="New Amsterdam Library, Murray Street, New York, NY, United States">
+                    <input type="hidden" name="d_address" value="Chobani SoHo, Prince Street, New York, NY, United States">
+                    <input type="hidden" name="s_latitude" value="40.7136403">
+                    <input type="hidden" name="s_longitude" value="-74.00784520000002">
+                    <input type="hidden" name="d_latitude" value="40.7257536">
+                    <input type="hidden" name="d_longitude" value="-74.00113820000001">
+                    <input type="hidden" name="service_type" value="1">
+                    <input type="hidden" name="distance" value="2">
+
+                    <p>Payment Methods</p>
+                    <select class="form-control" name="payment_mode" id="payment_mode" onchange="card(this.value);">
+                      <option value="CASH">CASH</option>
+                                                                    <option value="CARD">CARD</option>
+                                                                </select>
+                    <br>
+
+                                                                    <select class="form-control" name="card_id" style="display: none;" id="card_id">
+                          <option value="">Select Card</option>
+                                                      <option value="card_1Ar7lJLN6lzulolDRKkIVcyn">American Express **** **** **** 0005</option>
+                                                  </select>
+                                            
+                    <button type="submit" class="half-primary-btn fare-btn">Ride Now</button>
+                    <button type="button" class="half-secondary-btn fare-btn" data-toggle="modal" data-target="#schedule_modal">Schedule Later</button>
+
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div class="user-request-map">
+                                        <div class="map-static" style="background-image: url(https://maps.googleapis.com/maps/api/staticmap?autoscale=1&amp;size=600x450&amp;maptype=roadmap&amp;format=png&amp;visual_refresh=true&amp;markers=icon:http://18.220.43.48/asset/img/marker-start.png%7C40.7136403,-74.00784520000002&amp;markers=icon:http://18.220.43.48/asset/img/marker-start.png%7C40.7257536,-74.00113820000001&amp;path=color:0x191919|weight:8|40.7136403,-74.00784520000002|40.7257536,-74.00113820000001&amp;key=AIzaSyDEJUPrYJXDZNgb9KATSHAQYP-7lcchUts);">
+                    </div>
+                    <div class="from-to row no-margin">
+                        <div class="from">
+                            <h5>FROM</h5>
+                            <p>New Amsterdam Library, Murray Street, New York, NY, United States</p>
+                        </div>
+                        <div class="to">
+                            <h5>TO</h5>
+                            <p>Chobani SoHo, Prince Street, New York, NY, United States</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Schedule Modal -->
+<div id="schedule_modal" class="modal fade schedule-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Schedule a Ride</h4>
+      </div>
+      <form>
+      <div class="modal-body">
+        
+        <label>Date</label>
+        <input value="08/15/2017" type="text" id="datepicker" placeholder="Date" name="schedule_date">
+        <label>Time</label>
+        <input value="16:20" type="text" id="timepicker" placeholder="Time" name="schedule_time">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="schedule_button" class="btn btn-default" data-dismiss="modal">Schedule Ride</button>
+      </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="row footer no-margin">
+        <div class="container">
+            <div class="col-md-6 text-left">
+                <p>&copy; 2017 Appoets</p>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/appstore.png"></a>
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/playstore.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://18.220.43.48/asset/js/jquery.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap.min.js"></script>       
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery-migrate-1.2.1.min.js"></script> 
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/slick.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-datepicker.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-timepicker.js"></script>
+    <script src="http://18.220.43.48/asset/js/dashboard-scripts.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $('#schedule_button').click(function(){
+                $("#datepicker").clone().attr('type','hidden').appendTo($('#create_ride'));
+                $("#timepicker").clone().attr('type','hidden').appendTo($('#create_ride'));
+                document.getElementById('create_ride').submit();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $('#datepicker').datepicker();
+         $('#timepicker').timepicker({showMeridian : false});
+    </script>
+    <script type="text/javascript">
+        function card(value){
+            if(value == 'CARD'){
+                $('#card_id').fadeIn(300);
+            }else{
+                $('#card_id').fadeOut(300);
+            }
+        }
+    </script>
+    
+</body>
+</html>

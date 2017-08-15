@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="JHz3JtaamCL50sHiRxVNtcQbaAK1loYsK2sf9YMd">
+
+    <link rel="shortcut icon" href="http://18.220.43.48/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://18.220.43.48/favicon.ico" type="image/x-icon">
+
+    <title>Tranxit</title>
+    <link rel="shortcut icon" type="image/png" href="http://18.220.43.48/favicon.ico"/>
+    
+
+    <!-- Styles -->
+    <link href="http://18.220.43.48/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://18.220.43.48/asset/css/slick.css" rel="stylesheet" type="text/css">
+    <link href="http://18.220.43.48/asset/css/slick-theme.css" rel="stylesheet" type="text/css">
+    <link href="http://18.220.43.48/asset/css/rating.css" rel="stylesheet" type="text/css">
+    <link href="http://18.220.43.48/asset/css/dashboard-style.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+    #map {
+        height: 100%;
+        min-height: 400px; 
+    }
+    
+    .controls {
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+</style>
+
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {"csrfToken":"JHz3JtaamCL50sHiRxVNtcQbaAK1loYsK2sf9YMd"}    </script>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <div class="overlay" id="overlayer" data-toggle="offcanvas"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+        <li>
+            <a href="http://18.220.43.48/provider/earnings">Patner Earnings</a>
+        </li>
+        <li>
+            <a href="#">Invite</a>
+        </li>
+        <li>
+            <a href="http://18.220.43.48/provider/profile">Profile</a>
+        </li>
+        <li>
+            <a href="#">Help</a>
+        </li>
+        <li>
+            <a href="http://18.220.43.48/provider/logout"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+        </li>
+    </ul>
+</nav>        <div id="page-content-wrapper">
+            <header>
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                    <span class="hamb-top"></span>
+                    <span class="hamb-middle"></span>
+                    <span class="hamb-bottom"></span>
+                </button>
+                <a class="navbar-brand" href="http://18.220.43.48/provider"><img src="http://18.220.43.48/logo-black.png"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://18.220.43.48/help">Help</a></li>
+                    <li class="dropdown mega-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Appoets Demo
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu mega-dropdown-menu">
+                            <li class="row no-margin">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+                                    <a href="#" class="new-pro-img bg-img" style="background-image: url(http://18.220.43.48/asset/img/provider.jpg);">
+                                    </a>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <h6 class="new-pro-name">
+                                        Appoets Demo
+                                    </h6>
+                                    <div class="rating-outer new-pro-rating">
+                                        <input type="hidden" class="rating"/ value="5.00" readonly>
+                                    </div>
+
+                                    <a href="http://18.220.43.48/provider/profile" class="new-pro-link">My Profile</a>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="http://18.220.43.48/provider/profile/password">Change Password</a></li>
+                            <li>
+                                <a href="http://18.220.43.48/provider/logout"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="http://18.220.43.48/provider/logout" method="POST" style="display: none;">
+                                    <input type="hidden" name="_token" value="JHz3JtaamCL50sHiRxVNtcQbaAK1loYsK2sf9YMd">
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>            <div class="page-content">
+                <div class="pro-dashboard">
+                    <div class="pro-dashboard-head">
+    <div class="container">
+        <a href="http://18.220.43.48/provider/profile" class="pro-head-link">Profile</a>
+        <a href="http://18.220.43.48/provider/documents" class="pro-head-link">Manage Documents</a>
+        <a href="#" class="pro-head-link active">Update Location</a>
+    </div>
+</div>
+
+<div class="pro-dashboard-content gray-bg">
+    <div class="container">
+        <div class="manage-docs pad30">
+            <div class="manage-doc-content">
+                <div class="manage-doc-section pad50">
+                    <div class="manage-doc-section-head row no-margin">
+                        <h3 class="manage-doc-tit">
+                            Update Location
+                        </h3>
+                    </div>
+
+                    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Location Updated successfully!
+    </div>
+
+                    <div class="manage-doc-section-content row">
+                        <div class="prof-sub-col col-xs-12">
+                            <br/>
+                            <div class="form-group">
+                                <input tabindex="2" id="pac-input" class="form-control" type="text" placeholder="Enter a location" name="s_address">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <div id="map"></div>
+                        </div>
+
+                        <form action="http://18.220.43.48/provider/location" id="location_update_form" method="POST" class="form-horizontal row-border">
+                            <input type="hidden" name="_token" value="JHz3JtaamCL50sHiRxVNtcQbaAK1loYsK2sf9YMd">
+                            <input type="hidden" name="latitude" id="latitude">
+                            <input type="hidden" name="longitude" id="longitude">
+                            <input type="hidden" name="address" id="address">
+
+                            <div class="prof-form-sub-sec border-top">
+                                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-block btn-primary update-link">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+                </div>
+                <div class="footer row no-margin">
+    <div class="container">
+        <div class="row no-margin">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <ul>
+                    <li><a href="#">Ride</a></li>
+                    <li><a href="#">Drive</a></li>
+                    <li><a href="#">Cities</a></li>
+                    <li><a href="#">Fare Estimate</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <ul>
+                    <li><a href="#">Signup to Ride</a></li>
+                    <li><a href="#">Become a Driver</a></li>
+                    <li><a href="#">Ride Now</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <h5>Get App on</h5>
+                <ul class="app">
+                    <li><a href=""><img src="http://18.220.43.48/asset/img/appstore.png"></a></li>
+                    <li><a href=""><img src="http://18.220.43.48/asset/img/playstore.png"></a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <h5>Connect us</h5>
+                <ul class="social">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row no-margin">
+            <div class="col-md-12 copy">
+                <p>&copy; 2017 Appoets</p>
+            </div>
+        </div>
+    </div>
+</div>            </div>
+        </div>
+    </div>
+
+    <div id="modal-incoming"></div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/slick.min.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/rating.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/dashboard-scripts.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <script type="text/babel" src="http://18.220.43.48/asset/js/incoming.js"></script>
+    <script type="text/javascript">
+        // $.incoming({
+        //     'url': 'http://18.220.43.48/provider/incoming',
+        //     'modal': '#modal-incoming'
+        // });
+    </script>
+
+    <script>
+    var map;
+    var input = document.getElementById('pac-input');
+    var s_latitude = document.getElementById('latitude');
+    var s_longitude = document.getElementById('longitude');
+    var s_address = document.getElementById('address');
+
+    function initMap() {
+
+        var userLocation = new google.maps.LatLng(
+                 40.7502839 , 
+                 -73.9948484             );
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: userLocation,
+            zoom: 15
+        });
+
+        var service = new google.maps.places.PlacesService(map);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        var infowindow = new google.maps.InfoWindow();
+
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "Your Location",
+        });
+
+        var marker = new google.maps.Marker({
+            map: map,
+            draggable: true,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+        marker.setVisible(true);
+        marker.setPosition(userLocation);
+        infowindow.open(map, marker);
+
+        google.maps.event.addListener(map, 'click', updateMarker);
+        google.maps.event.addListener(marker, 'dragend', updateMarker);
+
+        function updateMarker(event) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'latLng': event.latLng}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        input.value = results[0].formatted_address;
+                        updateForm(event.latLng.lat(), event.latLng.lng(), results[0].formatted_address);
+                    } else {
+                        alert('No Address Found');
+                    }
+                } else {
+                    alert('Geocoder failed due to: ' + status);
+                }
+            });
+
+            marker.setPosition(event.latLng);
+            map.setCenter(event.latLng);
+        }
+
+        autocomplete.addListener('place_changed', function(event) {
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+
+            if (place.hasOwnProperty('place_id')) {
+                if (!place.geometry) {
+                    window.alert("Autocomplete's returned place contains no geometry");
+                    return;
+                }
+                updateLocation(place.geometry.location);
+            } else {
+                service.textSearch({
+                    query: place.name
+                }, function(results, status) {
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        updateLocation(results[0].geometry.location, results[0].formatted_address);
+                        input.value = results[0].formatted_address;
+                    }
+                });
+            }
+        });
+
+        function updateLocation(location) {
+            map.setCenter(location);
+            marker.setPosition(location);
+            marker.setVisible(true);
+            infowindow.open(map, marker);
+            updateForm(location.lat(), location.lng(), input.value);
+        }
+
+        function updateForm(lat, lng, addr) {
+            s_latitude.value = lat;
+            s_longitude.value = lng;
+            s_address.value = addr;
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALHyNTDk1K_lmcFoeDRsrCgeMGJW6mGsY&libraries=places&callback=initMap" async defer></script>
+
+</body>
+</html>

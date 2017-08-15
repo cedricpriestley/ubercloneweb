@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tranxit - Wallet  - User Dashboard</title>
+    <link rel="shortcut icon" type="image/png" href="http://18.220.43.48/favicon.ico"/>
+
+    <link href="http://18.220.43.48/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/slick.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://18.220.43.48/asset/css/slick-theme.css"/>
+    <link href="http://18.220.43.48/asset/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/bootstrap-timepicker.css" rel="stylesheet">
+    <link href="http://18.220.43.48/asset/css/dashboard-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="col-md-12">
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>             
+
+              <a class="navbar-brand" href="http://18.220.43.48/dashboard"><img src="http://18.220.43.48/logo-black.png"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+                <ul class="nav navbar-nav navbar-right">                  
+                  <li class="menu-drop">
+                      <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Appoets Demo
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                            <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                            <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                            <li><a href="http://18.220.43.48/logout"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">Logout</a></li>
+                                    <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                                        <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                                    </form>
+                          </ul>
+                        </div>
+                  </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </nav>
+</header>
+    <div class="page-content dashboard-page">    
+        <div class="container">
+            
+            <div class="col-md-3">
+    <div class="dash-left">
+        <div class="user-img">
+                        <div class="pro-img" style="background-image: url(http://18.220.43.48/main/avatar.jpg);"></div>
+            <h4>Appoets Demo</h4>
+        </div>
+        <div class="side-menu">
+             <ul>
+                <li><a href="http://18.220.43.48/dashboard">Dashboard</a></li>
+                <li><a href="http://18.220.43.48/trips">My Trips</a></li>
+                <li><a href="http://18.220.43.48/upcoming/trips">Upcoming trips</a></li>
+                <li><a href="http://18.220.43.48/profile">Profile</a></li>
+                <li><a href="http://18.220.43.48/change/password">Change Password</a></li>
+                <li><a href="http://18.220.43.48/payment">Payment</a></li>
+                <li><a href="http://18.220.43.48/promotion">Promotions</a></li>
+                <li><a href="http://18.220.43.48/wallet">My Wallet <span class="pull-right">$100</span></a></li>
+                <li><a href="http://18.220.43.48/logout"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a></li>
+                        <form id="logout-form" action="http://18.220.43.48/logout" method="POST" style="display: none;">
+                            <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                        </form>
+            </ul>
+        </div>
+    </div>
+</div>            
+<div class="col-md-9">
+    <div class="dash-content">
+        <div class="row no-margin">
+            <div class="col-md-12">
+                <h4 class="page-title">My Wallet</h4>
+            </div>
+        </div>
+        <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        $100 added to your wallet
+    </div>
+
+        <div class="row no-margin">
+            <form action="http://18.220.43.48/add/money" method="POST">
+            <input type="hidden" name="_token" value="2mYiNTi8Okf76gGRd4HuFmY1hehpCLmh9tNtppPh">
+                <div class="col-md-6">
+                     
+                    <div class="wallet">
+                        <h4 class="amount">
+                        	<span class="price">$100</span>
+                        	<span class="txt">in your wallet</span>
+                        </h4>
+                    </div>                                                               
+
+                </div>
+                                <div class="col-md-6">
+                    
+                    <h6><strong>Add Money</strong></h6>
+
+                    <div class="input-group full-input">
+                        <input type="number" class="form-control" name="amount" placeholder="Enter Amount" >
+                    </div>
+                    <br>
+                                            <select class="form-control" name="card_id">
+	                      	                        <option  selected  value="card_1Ar7lJLN6lzulolDRKkIVcyn">American Express **** **** **** 0005</option>
+	                                              </select>
+                                        
+                    <button type="submit" class="full-primary-btn fare-btn">Add Money</button> 
+
+                </div>
+                            </form>
+        </div>
+
+    </div>
+</div>
+
+
+        </div>
+    </div>
+
+
+    <div class="row footer no-margin">
+        <div class="container">
+            <div class="col-md-6 text-left">
+                <p>&copy; 2017 Appoets</p>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 text-right">
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/appstore.png"></a>
+                <a href="" class="app"><img src="http://18.220.43.48/asset/img/playstore.png"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://18.220.43.48/asset/js/jquery.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap.min.js"></script>       
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/jquery-migrate-1.2.1.min.js"></script> 
+    <script type="text/javascript" src="http://18.220.43.48/asset/js/slick.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-datepicker.min.js"></script>
+    <script src="http://18.220.43.48/asset/js/bootstrap-timepicker.js"></script>
+    <script src="http://18.220.43.48/asset/js/dashboard-scripts.js"></script>
+
+        
+</body>
+</html>
